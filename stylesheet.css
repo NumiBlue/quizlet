@@ -3,12 +3,15 @@
   }
 
 /* High Score Link */
-h6
+
 
 /* Timer */
-h5
 
+
+#timer {
+ display: float;
+ float: right;
+}
 /* Questions */
 
 /* Answer Buttons */
-
