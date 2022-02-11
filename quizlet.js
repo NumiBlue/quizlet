@@ -57,49 +57,49 @@ document.getElementById("btn").addEventListener("click", function () {
 
 
 //Questions
-var quest = [
-var myQ1 = {
+var myQuestions= [
+ myQ1 = {
   question: "Rumi was ______.",
-  answer: "2",
- options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"]
+ options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
+ answer: "2"
 },
 
-var myQ2 = {
+ myQ2 = {
   question: "What book did St. Theresa of Avila write",
-  answer: "1",
-  options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"]
+  options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"],
+  answer: "1"
 },
 
-var myQ3 = {
+ myQ3 = {
   question: "Mirabai was a devotee of which god?",
-  answer: "3",
-  options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"]
+  options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"],
+  answer: "3"
 },
 
-var myQ4 = {
+myQ4 = {
   question: "What was the Buddha's original name?",
-  answer: "1",
-  options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"]
+  options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"],
+  answer: "1"
 },
 
-var myQ5 = {
+myQ5 = {
   question: "St. Phoebe is mentioned in the Bible as a ______?",
-  answer: "4",
-   options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"]
+   options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"],
+   answer: "4"
 },
 
-var myQ6= {
+myQ6= {
   question: "St. Hildegard of Bingen described the influence of God as what?",
   answer: "1",
-  options: ["The greening", "the darkening", "the shining", "the awakening"]
+  options: ["The greening", "the darkening", "the shining", "the awakening"],
+  answer: "1"
 }
 ]
 
 
-var allQuestions = [{
-  question: "What does DOM mean?",
-  answer: "The Dom...",
-}, myQ2];
-console.log(allQuestions);
+var allQuestions = [];
 
-//If, Else Loops to Show Questions/Answers?
+// Populate Questions
+function populate () {
+
+}
