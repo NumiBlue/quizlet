@@ -15,6 +15,7 @@
 
 // Set start time
 var setTime = 5;
+//global for displaying questions
 
 //on click, start
 document.getElementById("btn").addEventListener("click", function () {
@@ -25,6 +26,8 @@ document.getElementById("btn").addEventListener("click", function () {
     }
   document.getElementById("timer").textContent = setTime;
   }, 1000)
+  //display first question by calling function
+  
 });
 
 // Update the count down every 1 second
@@ -58,36 +61,37 @@ document.getElementById("btn").addEventListener("click", function () {
 
 //Questions
 var myQuestions= [
- myQ1 = {
+  //0
+ {
   question: "Rumi was ______.",
  options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
  answer: "2"
 },
-
- myQ2 = {
+//1
+ {
   question: "What book did St. Theresa of Avila write",
   options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"],
   answer: "1"
 },
-
- myQ3 = {
+//2
+ {
   question: "Mirabai was a devotee of which god?",
   options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"],
   answer: "3"
 },
-
-myQ4 = {
+//3
+{
   question: "What was the Buddha's original name?",
   options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"],
   answer: "1"
 },
-
-myQ5 = {
+//4
+{
   question: "St. Phoebe is mentioned in the Bible as a ______?",
    options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"],
    answer: "4"
 },
-
+//5
 myQ6= {
   question: "St. Hildegard of Bingen described the influence of God as what?",
   answer: "1",
