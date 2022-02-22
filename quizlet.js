@@ -58,9 +58,17 @@ document.getElementById("btn").addEventListener("click", function () {
 //Switch to high score screen
 
 
+//start button
+const startButton = document.querySelector("#start")
+
+//container
+const questionContainer = document.querySelector("#container")
+
+//starting position in array
+let startPoint = 0;
 
 //Questions
-var myQuestions= [
+const myQuestions= [
   //0
  {
   question: "Rumi was ______.",
@@ -101,7 +109,6 @@ myQ6= {
 ]
 
 
-var allQuestions = [];
 
 // Populate Questions
 function populate () {
