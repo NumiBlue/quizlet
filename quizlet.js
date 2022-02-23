@@ -108,9 +108,11 @@ myQ6= {
 }
 ]
 
+//Event listener for questions
+document.getElementById("btn").addEventListener("click", function () {
+  //adds class 'hide'
+  startButton.classList.add("hide")
+  //displays as array
+  displayInfo()
+} 
 
-
-// Populate Questions
-function populate () {
-
-}
