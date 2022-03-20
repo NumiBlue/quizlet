@@ -27,9 +27,11 @@
   justify-content: center;
   text-align: center;
 }
-.start-button {
-  display: center;
-  padding: 5px;
+.button2 {
+  justify-content:center;
+  width: 250px;
+  padding: 12px 28px;
+  background-color:aquamarine;
 }
 
 /* Questions */
