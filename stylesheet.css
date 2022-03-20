@@ -1,5 +1,7 @@
 * {
     font-family: "Times New Roman", Times, serif;
+    background-color: #F1EDED;
+    color: #9C88AB,
   }
 
 /* High Score Link */
@@ -12,6 +14,16 @@
  display: float;
  float: right;
 }
-/* Questions */
 
+
+
+/* Questions */
+.question {
+ font-size: 30px;
+ text-align: center;
+}
 /* Answer Buttons */
+.answer {
+  font-size: 20px;
+  text-align: center;
+}

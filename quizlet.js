@@ -70,43 +70,48 @@ let startPoint = 0;
 //Questions
 const myQuestions= [
   //0
- {
+  myQ0= {
   question: "Rumi was ______.",
  options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
  answer: "2"
 },
 //1
- {
+myQ1= {
   question: "What book did St. Theresa of Avila write",
   options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"],
   answer: "1"
 },
 //2
- {
+myQ2= {
   question: "Mirabai was a devotee of which god?",
   options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"],
   answer: "3"
 },
 //3
-{
+myQ3= {
   question: "What was the Buddha's original name?",
   options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"],
   answer: "1"
 },
 //4
-{
+myQ4= {
   question: "St. Phoebe is mentioned in the Bible as a ______?",
    options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"],
    answer: "4"
 },
 //5
-myQ6= {
+myQ5= {
   question: "St. Hildegard of Bingen described the influence of God as what?",
   answer: "1",
   options: ["The greening", "the darkening", "the shining", "the awakening"],
   answer: "1"
 }
 ]
+//Stringify and aStore answers
+const answers = { 'myQ0': 2, 'myQ1': 1, 'myQ2': 3, 'myQ3':1, 'myQ4': 4, 'myQ5': 1};
+//Put answers in local storage
+localStorage.setItem('answers', JSON.stringify, (answers));
+
 
 //Event listener for questions
 document.getElementById("btn").addEventListener("click", function () {
@@ -115,4 +120,3 @@ document.getElementById("btn").addEventListener("click", function () {
   //displays as array
   displayInfo()
 } 
-
