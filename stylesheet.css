@@ -5,17 +5,32 @@
   }
 
 /* High Score Link */
-
+.highScore-btn {
+  display: float;
+  float: left;
+}
 
 /* Timer */
 
 .h5
 #timer {
- display: float;
- float: right;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px;
 }
 
-
+/*Display Intro*/
+#rules {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.start-button {
+  display: center;
+  padding: 5px;
+}
 
 /* Questions */
 .question {
