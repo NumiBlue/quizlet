@@ -111,6 +111,7 @@ myQ5= {
 const answers = { 'myQ0': 2, 'myQ1': 1, 'myQ2': 3, 'myQ3':1, 'myQ4': 4, 'myQ5': 1};
 //Put answers in local storage
 localStorage.setItem('answers', JSON.stringify, (answers));
+//add points
 
 
 //Event listener for questions
@@ -119,4 +120,4 @@ document.getElementById("btn").addEventListener("click", function () {
   startButton.classList.add("hide")
   //displays as array
   displayInfo()
-} 
+}) 
