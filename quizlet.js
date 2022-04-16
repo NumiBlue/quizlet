@@ -70,6 +70,7 @@ let startPoint = 0;
 //Start Menu Hide
 const rules = document.querySelector("#rules")
 
+
 //Questions
 const myQuestions= [
   //0
@@ -121,6 +122,8 @@ document.getElementById("start-btn").addEventListener("click", function () {
   console.log("starting quiz");
   //adds class 'hide'
   rules.classList.add("hide")
+  //when start pressed, removes hide from main
+  ques.classList.remove("hide") 
   //displays as array
  // displayInfo()
 }) 
