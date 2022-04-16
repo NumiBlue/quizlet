@@ -42,12 +42,14 @@
 }
 
 /* Questions */
-.question {
+.main {
  font-size: 30px;
  text-align: center;
 }
+
+
 /* Answer Buttons */
-.answer {
+.submit {
   font-size: 20px;
   text-align: center;
 }
