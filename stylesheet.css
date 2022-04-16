@@ -21,12 +21,18 @@
 }
 
 /*Display Intro*/
-#rules {
+.opening {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
+
+/*Hide*/
+.hide {
+  display:none
+}
+
 
 .button2 {
   justify-content:center;

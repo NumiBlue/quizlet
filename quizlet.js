@@ -68,8 +68,7 @@ const questionContainer = document.querySelector("#container")
 let startPoint = 0;
 
 //Start Menu Hide
-const display = rules;
-display()
+const rules = document.querySelector("#rules")
 
 //Questions
 const myQuestions= [
@@ -121,7 +120,7 @@ localStorage.setItem('answers', JSON.stringify, (answers));
 document.getElementById("start-btn").addEventListener("click", function () {
   console.log("starting quiz");
   //adds class 'hide'
-  startButton.classList.add("hide")
+  rules.classList.add("hide")
   //displays as array
-  displayInfo()
+ // displayInfo()
 }) 
