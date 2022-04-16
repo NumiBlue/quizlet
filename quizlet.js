@@ -18,7 +18,7 @@ var setTime = 5;
 //global for displaying questions
 
 //on click, start
-document.getElementById("btn").addEventListener("click", function () {
+document.getElementById("start-btn").addEventListener("click", function () {
   var interval = setInterval(function () {
     setTime = setTime - 1;
     if (setTime == 0) {
@@ -67,6 +67,10 @@ const questionContainer = document.querySelector("#container")
 //starting position in array
 let startPoint = 0;
 
+//Start Menu Hide
+const display = rules;
+display()
+
 //Questions
 const myQuestions= [
   //0
@@ -102,7 +106,6 @@ myQ4= {
 //5
 myQ5= {
   question: "St. Hildegard of Bingen described the influence of God as what?",
-  answer: "1",
   options: ["The greening", "the darkening", "the shining", "the awakening"],
   answer: "1"
 }
@@ -115,7 +118,8 @@ localStorage.setItem('answers', JSON.stringify, (answers));
 
 
 //Event listener for questions
-document.getElementById("btn").addEventListener("click", function () {
+document.getElementById("start-btn").addEventListener("click", function () {
+  console.log("starting quiz");
   //adds class 'hide'
   startButton.classList.add("hide")
   //displays as array
