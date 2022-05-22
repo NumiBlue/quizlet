@@ -14,7 +14,7 @@
 //Timer
 
 // Set start time
-var setTime = 5;
+var setTime = 30;
 //global for displaying questions
 
 //on click, start
@@ -25,9 +25,7 @@ document.getElementById("start-btn").addEventListener("click", function () {
       clearInterval(interval)
     }
   document.getElementById("timer").textContent = setTime;
-  }, 1000)
-  //display first question by calling function
-  
+  }, 1000);
 });
 
 // Update the count down every 1 second
