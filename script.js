@@ -145,7 +145,7 @@ const myQuestions= [
   ],
   answer: "0"
 },
-]
+];
 //For each question, grab question div and each input
 //Take array answers, display in inputs, and display question to 42, store as array (array methods)
 //Stringify and Store answers
