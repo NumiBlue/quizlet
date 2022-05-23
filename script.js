@@ -18,7 +18,7 @@ var setTime = 5;
 //global for displaying questions
 
 //on click, start
-document.getElementById("btn").addEventListener("click", function () {
+document.getElementById("start-btn").addEventListener("click", function () {
   var interval = setInterval(function () {
     setTime = setTime - 1;
     if (setTime == 0) {
@@ -67,50 +67,109 @@ const questionContainer = document.querySelector("#container")
 //starting position in array
 let startPoint = 0;
 
+//Start Menu Hide
+const rules = document.querySelector("#rules")
+
+
 //Questions
 const myQuestions= [
   //0
  {
+   myQ: 0,
   question: "Rumi was ______.",
- options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
- answer: "2"
+ options: [
+   "a Roman Emperor",
+  "a Sufi mystic and poet", 
+  "a Taoist monk", 
+  "an American beat poet"
+],
+ answer: "1"
 },
 //1
- {
+{
+  myQ: 1,
   question: "What book did St. Theresa of Avila write",
-  options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"],
-  answer: "1"
+  options: [
+    "The Interior Castle", 
+  "Dark Night of the Soul", 
+  "Conversations with God", 
+  "The Necronomicon"
+],
+  answer: "0"
 },
 //2
- {
+{
+  myQ: 2,
   question: "Mirabai was a devotee of which god?",
-  options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"],
-  answer: "3"
+  options: [
+    "Zeus", 
+  "Durga", 
+  "Sri Krishna", 
+  "Siddhartha Gautama"
+],
+  answer: "2"
 },
 //3
 {
+  myQ: 3,
   question: "What was the Buddha's original name?",
-  options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"],
-  answer: "1"
+  options: [
+    "Siddhartha Gautama", 
+  "His Holiness, the Dalai Lama", 
+  "St. Patrick", 
+  "Gupta"
+],
+  answer: "0"
 },
 //4
 {
+  myQ: 4,
   question: "St. Phoebe is mentioned in the Bible as a ______?",
-   options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"],
-   answer: "4"
+   options: [
+     "Prophetess", 
+     "Martyr", 
+     "Wife of an Apostle", 
+     "Deacon"
+    ],
+   answer: "3"
 },
 //5
-myQ6= {
+{
+  myQ: 5,
   question: "St. Hildegard of Bingen described the influence of God as what?",
-  answer: "1",
-  options: ["The greening", "the darkening", "the shining", "the awakening"],
-  answer: "1"
-}
-]
+  options: [
+    "The greening", 
+    "the darkening", 
+    "the shining", 
+    "the awakening"
+  ],
+  answer: "0"
+},
+];
+//For each question, grab question div and each input
+//Take array answers, display in inputs, and display question to 42, store as array (array methods)
+//Stringify and Store answers
+const answers = { 'myQ0': 2, 'myQ1': 1, 'myQ2': 3, 'myQ3':1, 'myQ4': 4, 'myQ5': 1};
+//Put answers in local storage
+localStorage.setItem('answers', JSON.stringify, (answers));
+//add points
 
 
+//Event listener for questions
+document.getElementById("start-btn").addEventListener("click", function () {
+  console.log("starting quiz");
+  //adds class 'hide'
+  rules.classList.add("hide")
+  //when start pressed, removes hide from main
+  ques.classList.remove("hide") 
+  //displays as array
+ // displayInfo()
+}) 
 
-// Populate Questions
-function populate () {
+//Attempt
+let question_display = document.getElementById("ques");
+let answer_display1 = document.getElementById("1");
+let answer_display2 = document.getElementById("2");
+let answer_display3 = document.getElementById("3");
+let answer_display4 = document.getElementById("4");
 
-}
