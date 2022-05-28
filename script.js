@@ -14,7 +14,7 @@
 //Timer
 
 // Set start time
-var setTime = 5;
+var setTime = 60;
 //global for displaying questions
 
 //on click, start
@@ -131,9 +131,14 @@ document.getElementById("start-btn").addEventListener("click", function () {
 }) 
 
 //Attempt
+function NextQuestion(index) {
+  handleQuestions()
+  const currentQuestion = shuffledQuestions[index]
+  document.getElementById("question-number").innerHTML = questionNumber
+  document.getElementById("player-score").innerHTML = playerScore
 let question_display = document.getElementById("ques");
 let answer_display1 = document.getElementById("1");
 let answer_display2 = document.getElementById("2");
 let answer_display3 = document.getElementById("3");
 let answer_display4 = document.getElementById("4");
-
+};
