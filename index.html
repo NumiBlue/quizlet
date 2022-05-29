@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <html lang="en">
+ 	<head>
+ 		<meta charset="UTF-8" />
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 	</head>
+ 	<body>
+ 		<div class="jumbotron">
+             <h1 class="display-4" id="question">
     <!--<link
       rel="stylesheet"
       href="/Users/ciarahargis/Desktop/Code/challenges/quizlet/stylesheet.css"
     />-->
 
-    <title>Quiz</title>
+    Quiz</h1>
   </head>
 
   <body>
@@ -22,29 +25,23 @@
     <div id="rules" class="opening">
       <h1>Welcome to Quizlet!</h1>
       <br />
-      <p>Let's see how your knowledge of Historical Mysticism holds up!</p>
+      <p class="lead text-monospace" id="timer">Let's see how your knowledge of Historical Mysticism holds up!</p>
       <p>
         Answer the questions. Every correct answer will earn you points. Wrong
         answers will remove time from the clock.
       </p>
       <!--Start Button-->
-      <button id="start-btn" class="button2">Start</button>
-    </div>
-
-    <!--Questions-->
-    <section class="container">
-      <!--Displays Question-->
-    <div class="ques">
-      </div>
-      <!--Displays Answers-->
-       <div class="answers">
-       </div>
-      
-      <!--Submit Button-->
-      <div><button type="submit">Submit</button></div>
-    </div>
-  </section>
-    <!--High Score Screen-->
-    <script src="./script.js"></script>
-  </body>
-</html>
+      <hr class="my-4" />
+             <div id="options"></div>
+             <p id="result"></p>
+             <div id="start"></div>
+ </div>
+ 		</div>
+ 		<script
+ 			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+ 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+ 			crossorigin="anonymous"
+ 		></script>
+ 		<script src="script.js"></script>
+ 	</body>
+ </html>
