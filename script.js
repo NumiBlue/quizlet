@@ -61,15 +61,6 @@ document.getElementById("start-btn").addEventListener("click", function () {
 //start button
 const startButton = document.querySelector("#start")
 
-//container
-const questionContainer = document.querySelector("#container")
-
-//starting position in array
-let startPoint = 0;
-
-//Start Menu Hide
-const rules = document.querySelector("#rules")
-
 
 //Questions
 const myQuestions= [
@@ -119,26 +110,55 @@ localStorage.setItem('answers', JSON.stringify, (answers));
 //add points
 
 
-//Event listener for questions
-document.getElementById("start-btn").addEventListener("click", function () {
-  console.log("starting quiz");
-  //adds class 'hide'
-  rules.classList.add("hide")
-  //when start pressed, removes hide from main
-  ques.classList.remove("hide") 
-  //displays as array
- // displayInfo()
-}) 
+let currentQuestion = 0;
+let score = 0;
+let totalTime = 60;
+let currentAnswer = "";
+let a;
 
-//Attempt
-function NextQuestion(index) {
-  handleQuestions()
-  const currentQuestion = shuffledQuestions[index]
-  document.getElementById("question-number").innerHTML = questionNumber
-  document.getElementById("player-score").innerHTML = playerScore
-let question_display = document.getElementById("ques");
-let answer_display1 = document.getElementById("1");
-let answer_display2 = document.getElementById("2");
-let answer_display3 = document.getElementById("3");
-let answer_display4 = document.getElementById("4");
-};
+function showQuestion() {
+	$("#question").text(askAllQuestion[currentQuestion].question);
+	currentAnswer = askAllQuestion[currentQuestion].answer;
+	for (
+		let round = 0;
+		round < askAllQuestion[currentQuestion].options.length;
+		round++
+	) {
+		let option = $("<button>")
+			.addClass("btn btn-success btn-lg btn-block selectedAnswer")
+			.text(askAllQuestion[currentQuestion].options[lap])
+			.attr("value", askAllQuestion[currentQuestion].options[lap]);
+		$("#options").append(option);
+	}
+}
+$(document).on("click", ".selectedAnswer", function () {
+	let chosenAnswer = $(this).val();
+	if (chosenAnswer === nowAnswer) {
+		$("#result").text("That is Correct!");
+		score++;
+		checkGame();
+	} else {
+		$("#result").text("Sorry, that's not the correct answer.");
+		score--;
+		checkGame();
+	}
+});
+// end of the game function
+function checkGame() {
+	if (currentQuestion >= 6 || totalTime <= 0) {
+		$("#question").text("Game Over");
+		$("#options").empty();
+		$("#result").text(`Your total score is ${score}`);
+		$("#start").show();
+		clearInterval(a);
+		currentQuestion = 0;
+		score = 0;
+		totalTime = 60;
+		currentAnswer = "";
+	} else {
+		currentQuestion++;
+		$("#question").empty();
+		$("#options").empty();
+		showQuestion();
+	}
+}
