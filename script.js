@@ -4,6 +4,7 @@ var questionsIndex = 0;
 
 //DOM elements
 var questionDiv = document.querySelector("#questionDiv");
+var wraps = document.querySelector("#wraps");
 
 
 //Questions
