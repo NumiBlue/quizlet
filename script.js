@@ -3,7 +3,7 @@ var score = 0;
 var questionsIndex = 0;
 
 //DOM elements
-
+var questionDiv = document.querySelector("#questionDiv");
 
 
 //Questions
