@@ -5,7 +5,11 @@ var questionsIndex = 0;
 //DOM elements
 var questionDiv = document.querySelector("#questionDiv");
 var wraps = document.querySelector("#wraps");
-
+var highScore = document.querySelector(".highScore");
+var onceMore = document.querySelector("playAgain");
+var clearAll = document.querySelector("clear");
+var questionCon = document.querySelector(".question-Con");
+var highScoreCon = document.querySelector(".highscore-Con");
 
 //Questions
 const myQuestions= [
