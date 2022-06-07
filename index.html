@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Mysticism Quiz</title>
+    <question>Mysticism Quiz</question>
 
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
@@ -16,37 +16,32 @@
 
     <div class="wrapper">
       <div id="start-screen" class="start">
-        <h1>Mysticism Quiz</h1>
-        <p>Let's see if you can answer these questions about mysticism before time runs out!
-          Incorrect answers will penalize you time.
+        <h1>Coding Quiz Challenge</h1>
+        <p>
+          See if you can answer these questions about mysicism. Bear in mind that incorrect answers will penalize your
+          score/time by ten seconds!
         </p>
-      </p>
-      <button id="start">Start Quiz</button>
-    </div>
+        <button id="start">Start Quiz</button>
+      </div>
 
-    <!--Hide Questions-->
-    <div id="questions" class="hide">
-      <h2 id="question-title"></h2>
-      <div id="choices" class="choices"></div>
-    </div>
+      <div id="questions" class="hide">
+        <h2 id="question-question"></h2>
+        <div id="options" class="options"></div>
+      </div>
 
-    <!--Final Screen-->
-    <div id="end-screen" class="hide"></div>
-    <h2>Quiz Complete!</h2>
+      <div id="end-screen" class="hide">
+        <h2>All done!</h2>
         <p>Your final score is <span id="final-score"></span>.</p>
         <p>
           Enter initials: <input type="text" id="initials" max="3" />
           <button id="submit">Submit</button>
         </p>
-        <body>
-          <div class="wrapper">
-            <h1>Highscores</h1>
-            <ol id="highscores"></ol>
-      
-            <a href="index.html"><button>Go Back</button></a>
-            <button id="clear">Clear Highscores</button>
-          </div>
       </div>
-      <script src="./script.js"></script>
-    </body>
-    </html>
+
+      <div id="feedback" class="feedback hide"></div>
+    </div>
+
+    <script src="./script.js"></script>
+    
+  </body>
+</html>

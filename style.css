@@ -4,7 +4,7 @@ body {
   }
   
   a {
-    color: black;
+    color: purple;
     text-decoration: none;
     transition: color 0.1s;
   }
