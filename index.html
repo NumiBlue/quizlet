@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mysticism Quiz</title>
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+
+  <body>
+    <div class="scores"><a href="highscores.html">View Highscores</a></div>
+
+    <div class="timer">Time: <span id="time">0</span></div>
+
+    <div class="wrapper">
+      <div id="start-screen" class="start">
+        <h1>Mysticism Quiz</h1>
+        <p>Let's see if you can answer these questions about mysticism before time runs out!
+          Incorrect answers will penalize you time.
+        </p>
+      </p>
+      <button id="start">Start Quiz</button>
+    </div>
+
+    <!--Hide Questions-->
+    <div id="questions" class="hide">
+      <h2 id="question-title"></h2>
+      <div id="choices" class="choices"></div>
+    </div>
+
+    <!--Final Screen-->
+    <div id="end-screen" class="hide"></div>
+    <h2>AQuiz Complete!</h2>
+        <p>Your final score is <span id="final-score"></span>.</p>
+        <p>
+          Enter initials: <input type="text" id="initials" max="3" />
+          <button id="submit">Submit</button>
+        </p>
+        <body>
+          <div class="wrapper">
+            <h1>Highscores</h1>
+            <ol id="highscores"></ol>
+      
+            <a href="index.html"><button>Go Back</button></a>
+            <button id="clear">Clear Highscores</button>
+          </div>
+      </div>
+
+    </body>
+    </html>
