@@ -54,3 +54,15 @@ localStorage.setItem('answers', JSON.stringify, (answers));
 //add points
 
 //start button
+function startQuiz() {
+  var startScreenEl = document.getElementById("start-screen");
+  startScreenEl.setAttribute("class", "hide");
+  //unhide
+  questionsEl.removeAttribute("class");
+
+  //timer
+  timerId = setInterval(clockTick, 1000);
+  timerEl.textContent = time;
+
+  getQuestion();
+}
