@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Users/ciarahargis/Desktop/Code/challenges/quizlet/stylesheet.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
-    <title>Quiz</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mysticism Quiz</title>
 
-<body>
-  <header>
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">Demigods</a>
-  </nav>
-<p id= "time-left"> Time: 1:00</p>
-</header>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
 
-<section id="ques-and-ans" class="container">
-  <div id="content" class="row col-8 d-flex justify-content-center text-center mx-auto">
+  <body>
+    <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
-    <h1 class="begin-info" class="text-center">Myths and Mystics Quiz</h1>
-    <h2>After leaving a religious studies program, an intrepid adventurer decided to go into web development. Attempt to answer the questions before time runs out to gain your place amongst the demigods!</h2>
-    <button id="start-btn" type="button" class="btn btn-info">Begin!</button>
-  </div>
-   <div id="shown"></div>
-   </section>
+    <div class="timer">Time: <span id="time">0</span></div>
 
-    
-    <script src="./script.js></script>
-</body>
-</html>
+    <div class="wrapper">
+      <div id="start-screen" class="start">
+        <h1>Mysticism Quiz</h1>
+        <p>Let's see if you can answer these questions about mysticism before time runs out!
+          Incorrect answers will penalize you time.
+        </p>
+      </p>
+      <button id="start">Start Quiz</button>
+    </div>
+
+    <!--Hide Questions-->
+    <div id="questions" class="hide">
+      <h2 id="question-title"></h2>
+      <div id="choices" class="choices"></div>
+    </div>
+
+    <!--Final Screen-->
+    <div id="end-screen" class="hide"></div>
+    <h2>AQuiz Complete!</h2>
+        <p>Your final score is <span id="final-score"></span>.</p>
+        <p>
+          Enter initials: <input type="text" id="initials" max="3" />
+          <button id="submit">Submit</button>
+        </p>
+        <body>
+          <div class="wrapper">
+            <h1>Highscores</h1>
+            <ol id="highscores"></ol>
+      
+            <a href="index.html"><button>Go Back</button></a>
+            <button id="clear">Clear Highscores</button>
+          </div>
+      </div>
+
+    </body>
+    </html>

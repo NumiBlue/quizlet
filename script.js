@@ -1,175 +1,196 @@
-//questions
-//GIVEN I am taking a code quiz
-//WHEN I click the start button
-//THEN a timer starts and I am presented with a question
-//WHEN I answer a question
-//THEN I am presented with another question
-//WHEN I answer a question incorrectly
-//THEN time is subtracted from the clock
-//WHEN all questions are answered or the timer reaches 0
-//THEN the game is over
-//WHEN the game is over
-//THEN I can save my initials and score
+//global variables
+var currentQ = 0;
+var time = questions.length * 15;
+var timerId;
 
-//Timer
-
-// Set start time
-var setTime = 5;
-//global for displaying questions
-
-//on click, start
-document.getElementById("start-btn").addEventListener("click", function () {
-  var interval = setInterval(function () {
-    setTime = setTime - 1;
-    if (setTime == 0) {
-      clearInterval(interval)
-    }
-  document.getElementById("timer").textContent = setTime;
-  }, 1000)
-  //display first question by calling function
-  
-});
-
-// Update the count down every 1 second
-//var x = setInterval(function() {
-
-// current time left
-// var now = getTime();
-
-// Find the distance between now and the count down date
-//var distance = setTime - now;
-
-//
-
-// Time calculations for seconds and milliseconds
-
-// var seconds = Math.floor((distance % (1000 * 60)) / 1000, 15000);
-
-// Output the result in an element with id="demo"
-//document.getElementById("demo").innerHTML = seconds + "s ", milliseconds + "ms";
-
-// If the count down is over, end at zero
-// if (distance = 0) {
-// clearInterval(x);
-//document.getElementById("demo").innerHTML = 0;
-//}
-//}, 1000);
-
-//Switch to high score screen
-
-
-//start button
-const startButton = document.querySelector("#start")
-
-//container
-const questionContainer = document.querySelector("#container")
-
-//starting position in array
-let startPoint = 0;
-
-//Start Menu Hide
-const rules = document.querySelector("#rules")
-
-
+//DOM elements
+var submitBtn = document.getElementById("submit");
+var startBtn = document.getElementById("start");
+var initialsEl = document.getElementById("initials");
+var feedbackEl = document.getElementById("feedback");
+var questionsEl = document.getElementById("questions");
+var timerEl = document.getElementById("time");
+var choicesEl = document.getElementById("choices");
 //Questions
 const myQuestions= [
-  //0
- {
-   myQ: 0,
+  {
   question: "Rumi was ______.",
- options: [
-   "a Roman Emperor",
-  "a Sufi mystic and poet", 
-  "a Taoist monk", 
-  "an American beat poet"
-],
- answer: "1"
+ options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
+ answer: "a Sufi mystic and poet"
 },
-//1
-{
-  myQ: 1,
+
+ {
   question: "What book did St. Theresa of Avila write",
-  options: [
-    "The Interior Castle", 
-  "Dark Night of the Soul", 
-  "Conversations with God", 
-  "The Necronomicon"
-],
-  answer: "0"
+  options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"],
+  answer: "The Interior Castle"
 },
-//2
-{
-  myQ: 2,
+ {
   question: "Mirabai was a devotee of which god?",
-  options: [
-    "Zeus", 
-  "Durga", 
-  "Sri Krishna", 
-  "Siddhartha Gautama"
-],
-  answer: "2"
+  options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"],
+  answer: "Sri Krishna"
 },
-//3
 {
-  myQ: 3,
   question: "What was the Buddha's original name?",
-  options: [
-    "Siddhartha Gautama", 
-  "His Holiness, the Dalai Lama", 
-  "St. Patrick", 
-  "Gupta"
-],
-  answer: "0"
+  options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"],
+  answer: "Siddhartha Gautama"
 },
-//4
 {
-  myQ: 4,
   question: "St. Phoebe is mentioned in the Bible as a ______?",
-   options: [
-     "Prophetess", 
-     "Martyr", 
-     "Wife of an Apostle", 
-     "Deacon"
-    ],
-   answer: "3"
+   options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"],
+   answer: "Deacon"
 },
-//5
 {
-  myQ: 5,
   question: "St. Hildegard of Bingen described the influence of God as what?",
-  options: [
-    "The greening", 
-    "the darkening", 
-    "the shining", 
-    "the awakening"
-  ],
-  answer: "0"
-},
-];
+  options: ["The greening", "the darkening", "the shining", "the awakening"],
+  answer: "The greening"
+}
+]
 //For each question, grab question div and each input
 //Take array answers, display in inputs, and display question to 42, store as array (array methods)
 //Stringify and Store answers
-const answers = { 'myQ0': 2, 'myQ1': 1, 'myQ2': 3, 'myQ3':1, 'myQ4': 4, 'myQ5': 1};
+//const answers = { 'myQ0': 2, 'myQ1': 1, 'myQ2': 3, 'myQ3':1, 'myQ4': 4, 'myQ5': 1};
 //Put answers in local storage
-localStorage.setItem('answers', JSON.stringify, (answers));
+//localStorage.setItem('answers', JSON.stringify, (answers));
 //add points
 
+//start button
+function startQuiz() {
+  var startScreenEl = document.getElementById("start-screen");
+  startScreenEl.setAttribute("class", "hide");
+  //unhide
+  questionsEl.removeAttribute("class");
 
-//Event listener for questions
-document.getElementById("start-btn").addEventListener("click", function () {
-  console.log("starting quiz");
-  //adds class 'hide'
-  rules.classList.add("hide")
-  //when start pressed, removes hide from main
-  ques.classList.remove("hide") 
-  //displays as array
- // displayInfo()
-}) 
+  //timer
+  timerId = setInterval(clockTick, 1000);
+  timerEl.textContent = time;
 
-//Attempt
-let question_display = document.getElementById("ques");
-let answer_display1 = document.getElementById("1");
-let answer_display2 = document.getElementById("2");
-let answer_display3 = document.getElementById("3");
-let answer_display4 = document.getElementById("4");
+  getQuestion();
+}
 
+function getQuestion() {
+  // get current question object from array
+  var currentQuestion = questions[currentQ];
+
+  // update question with current question
+  var questionEl = document.getElementById("question-question");
+  questionEl.textContent = currentQuestion.question;
+
+  // clear out any old question options
+  optionsEl.innerHTML = "";
+
+  // loop over options
+  currentQuestion.options.forEach(function(choice, i) {
+    // create new button for each choice
+    var choiceNode = document.createElement("button");
+    choiceNode.setAttribute("class", "choice");
+    choiceNode.setAttribute("value", choice);
+
+    choiceNode.textContent = i + 1 + ". " + choice;
+
+    // attach click event listener to each choice
+    choiceNode.onclick = questionClick;
+
+     // display on the page
+     optionsEl.appendChild(choiceNode);
+    });
+  }
+  
+  function questionClick() {
+    // if wrong
+    if (this.value !== questions[currentQ].answer) {
+      // penalize time
+      time -= 15;
+  
+      if (time < 0) {
+        time = 0;
+      }
+  
+      // display new time on page
+      timerEl.textContent = time;
+
+       // if right/wrong
+  feedbackEl.setAttribute("class", "feedback");
+  setTimeout(function() {
+    feedbackEl.setAttribute("class", "feedback hide");
+  }, 1000);
+
+  // move to next question
+  currentQ++;
+
+  // check if out of questions
+  if (currentQ === questions.length) {
+    quizEnd();
+  } else {
+    getQuestion();
+  }
+}
+
+function quizEnd() {
+  // stop timer
+  clearInterval(timerId);
+
+  // show end screen
+  var endScreenEl = document.getElementById("end-screen");
+  endScreenEl.removeAttribute("class");
+
+  // show final score
+  var finalScoreEl = document.getElementById("final-score");
+  finalScoreEl.textContent = time;
+
+  // hide questions section
+  questionsEl.setAttribute("class", "hide");
+}
+
+function clockTick() {
+  // update time
+  time--;
+  timerEl.textContent = time;
+
+  // check if user ran out of time
+  if (time <= 0) {
+    quizEnd();
+  }
+}
+
+function saveHighscore() {
+  // get value of input box
+  var initials = initialsEl.value.trim();
+
+  // checkvalue wasn't empty
+  if (initials !== "") {
+    // get saved scores from localstorage, or if not any, set to empty array
+    var highscores =
+      JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+    // format new score 
+    var newScore = {
+      score: time,
+      initials: initials
+    };
+
+    // save localstorage
+    highscores.push(newScore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+    // redirect to next page
+    window.location.href = "highscores.html";
+  }
+}
+
+function checkForEnter(event) {
+  if (event.key === "Enter") {
+    saveHighscore();
+  }
+}
+
+// user clicks to submit initials
+submitBtn.onclick = saveHighscore;
+
+// restart
+startBtn.onclick = startQuiz;
+
+initialsEl.onkeyup = checkForEnter;
+  }
+
+  //highscores
+  
