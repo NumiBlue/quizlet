@@ -1,53 +1,48 @@
 //global variables
-var score = 0;
-var questionsIndex = 0;
+var currentQ = 0;
+var time = questions.length * 15;
+var timerId;
 
 //DOM elements
-var questionDiv = document.querySelector("#questionDiv");
-var wraps = document.querySelector("#wraps");
-var highScore = document.querySelector(".highScore");
-var onceMore = document.querySelector("playAgain");
-var clearAll = document.querySelector("clear");
-var questionCon = document.querySelector(".question-Con");
-var highScoreCon = document.querySelector(".highscore-Con");
-
+var submitBtn = document.getElementById("submit");
+var startBtn = document.getElementById("start");
+var initialsEl = document.getElementById("initials");
+var feedbackEl = document.getElementById("feedback");
+var questionsEl = document.getElementById("questions");
+var timerEl = document.getElementById("time");
+var choicesEl = document.getElementById("choices");
 //Questions
 const myQuestions= [
-  //0
-  myQ0= {
+  {
   question: "Rumi was ______.",
  options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
- answer: "1"
+ answer: "a Sufi mystic and poet"
 },
-//1
-myQ1= {
+
+ {
   question: "What book did St. Theresa of Avila write",
   options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"],
-  answer: "0"
+  answer: "The Interior Castle"
 },
-//2
-myQ2= {
+ {
   question: "Mirabai was a devotee of which god?",
   options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"],
-  answer: "2"
+  answer: "Sri Krishna"
 },
-//3
-myQ3= {
+{
   question: "What was the Buddha's original name?",
   options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"],
-  answer: "0"
+  answer: "Siddhartha Gautama"
 },
-//4
-myQ4= {
+{
   question: "St. Phoebe is mentioned in the Bible as a ______?",
    options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"],
-   answer: "3"
+   answer: "Deacon"
 },
-//5
-myQ5= {
+{
   question: "St. Hildegard of Bingen described the influence of God as what?",
   options: ["The greening", "the darkening", "the shining", "the awakening"],
-  answer: "0"
+  answer: "The greening"
 }
 ]
 //For each question, grab question div and each input
