@@ -1,4 +1,6 @@
-# quizlet
+## quizlet
+Quizlet is a mysticism quiz application made with html, javascript, and css. When open, it will display questions, show if an answer selected is true or false, calculate score, and allow users to save high scores. 
+# user story
 GIVEN I am taking a code quiz
 WHEN I click the Start button
 THEN a timer starts and I am presented with a question
