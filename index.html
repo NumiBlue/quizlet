@@ -4,44 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <question>Mysticism Quiz</question>
-
+    <title>Javascript Quiz</title>
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
   </head>
-
   <body>
-    <div class="scores"><a href="highscores.html">View Highscores</a></div>
+    <header>
+      <div class="mb-4">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd">
+          <button id="high-score" class="btn btn-link">View Highscores</button>
+          <p id="timer">Timer: 01:00</p>
+        </nav>
+      </div>
+    </header>
 
-    <div class="timer">Time: <span id="time">0</span></div>
-
-    <div class="wrapper">
-      <div id="start-screen" class="start">
-        <h1>Coding Quiz Challenge</h1>
+    <section id="quiz-question-block" class="container">
+      <div
+        id="content"
+        class="row col-lg-6 d-flex justify-content-center mx-auto"
+      >Mysiticsm Quiz!</h1>
         <p>
-          See if you can answer these questions about mysicism. Bear in mind that incorrect answers will penalize your
-          score/time by ten seconds!
+          How well-versed are you in Mysiticsm? Click through the questions and answer before time runs out. Wrong answers will remove time from the clock. Good luck!
         </p>
-        <button id="start">Start Quiz</button>
+        <button id="start" type="button" class="btn btn-light mb-3">
+          Start
+        </button>
       </div>
-
-      <div id="questions" class="hide">
-        <h2 id="question-question"></h2>
-        <div id="options" class="options"></div>
-      </div>
-
-      <div id="end-screen" class="hide">
-        <h2>All done!</h2>
-        <p>Your final score is <span id="final-score"></span>.</p>
-        <p>
-          Enter initials: <input type="text" id="initials" max="3" />
-          <button id="submit">Submit</button>
-        </p>
-      </div>
-
-      <div id="feedback" class="feedback hide"></div>
-    </div>
+      <div id="next"></div>
+    </section>
 
     <script src="./script.js"></script>
-    
   </body>
 </html>

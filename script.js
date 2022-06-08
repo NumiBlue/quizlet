@@ -1,224 +1,369 @@
-//global variables
-var currentQ = 0;
-var timerId;
-
-//DOM elements
-var submitBtn = document.getElementById("submit");
-var startBtn = document.getElementById("start");
-var initialsEl = document.getElementById("initials");
-var feedbackEl = document.getElementById("feedback");
-var questionsEl = document.getElementById("questions");
-var timerEl = document.getElementById("time");
-var optionsEl = document.getElementById("options");
+// variables by ID
+var beginEl = document.getElementById("start");
+var timerEl = document.getElementById("timer");
+var contentEl = document.getElementById("content");
+var scoreEl = document.getElementById("high-score");
+// Score Variable
+var oldTales = [];
+// Timer 
+var timeLeft = 59;
+var stopClock = [];
+var isIncorrect = false;
+// points 
+var points = [];
 //Questions
-const questions= [
-  {
+var questions= [
+  (myQ0 = {
   question: "Rumi was ______.",
  options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
- answer: "a Sufi mystic and poet"
-},
-
+ answer: "2"
+}),
+(myQ1 =
  {
   question: "What book did St. Theresa of Avila write",
   options: ["The Interior Castle", "Dark Night of the Soul", "Conversations with God", "The Necronomicon"],
-  answer: "The Interior Castle"
-},
- {
+  answer: "1"
+}),
+ (myQ2= 
+  {
   question: "Mirabai was a devotee of which god?",
   options: ["Zeus", "Durga", "Sri Krishna", "Siddhartha Gautama"],
-  answer: "Sri Krishna"
-},
+  answer: "3"
+}),
+(myQ3= 
 {
   question: "What was the Buddha's original name?",
   options: ["Siddhartha Gautama", "His Holiness, the Dalai Lama", "St. Patrick", "Gupta"],
-  answer: "Siddhartha Gautama"
-},
+  answer: "1"
+}),
+(myQ4=
 {
   question: "St. Phoebe is mentioned in the Bible as a ______?",
    options: ["Prophetess", "Martyr", "Wife of an Apostle", "Deacon"],
-   answer: "Deacon"
-},
+   answer: "4"
+}),
+(myQ5=
 {
   question: "St. Hildegard of Bingen described the influence of God as what?",
   options: ["The greening", "the darkening", "the shining", "the awakening"],
-  answer: "The greening"
-}
+  answer: "1"
+})
 ]
 
-var time = questions.length * 15;
-//For each question, grab question div and each input
-//Take array answers, display in inputs, and display question to 42, store as array (array methods)
-//Stringify and Store answers
-//const answers = { 'myQ0': 2, 'myQ1': 1, 'myQ2': 3, 'myQ3':1, 'myQ4': 4, 'myQ5': 1};
-//Put answers in local storage
-//localStorage.setItem('answers', JSON.stringify, (answers));
-//add points
+quesNum = [];
 
-//start button
-function startQuiz() {
-  var startScreenEl = document.getElementById("start-screen");
-  startScreenEl.setAttribute("class", "hide");
-  //unhide
-  questionsEl.removeAttribute("class");
+// Display the questions (one at a time)
+function displayQuestions() {
+  quesCount = questions[quesNum.length];
+  // clear old content
+  contentEl.innerHTML = "";
 
-  timer
-  timerId = setInterval(clockTick, 1000);
-  timerEl.textContent = time;
+  // add new question
+  var newQue = document.createElement("h1");
+  newQue.setAttribute("class", "text-center", "col-lg-12");
+  newQue.innerHTML = quesCount.question;
+  // append to div
+  document.getElementById("content").appendChild(newQue);
 
-  whichEl();
+  // add new answer list
+  for (let i = 0; i < 4; i++) {
+    var answers = document.createElement("button");
+    answers.setAttribute("class", "btn btn-light mb-3 col-lg-12 text-center");
+    answers.innerHTML = [i + 1] + ": " + quesCount.choices[i];
+    // use a variable # for id to target/select the right answer
+    answers.setAttribute("id", [i + 1]);
+    document.getElementById("content").appendChild(answers);
+  }
+  var answerEl = document.getElementById("1");
+  var answer2El = document.getElementById("2");
+  var answer3El = document.getElementById("3");
+  var answer4El = document.getElementById("4");
+  questionLog(answerEl, answer2El, answer3El, answer4El);
 }
 
-function whichEl() {
-  // get current question object from array
-  var currentQuestion = questions[questions];
+// Answer Questions
+var questionLog = function (answerEl, answer2El, answer3El, answer4El) {
+  answerEl.addEventListener("click", answerValidator);
+  answer2El.addEventListener("click", answerValidator);
+  answer3El.addEventListener("click", answerValidator);
+  answer4El.addEventListener("click", answerValidator);
 
-  // update question with current question
-  var questionEl = document.getElementById("question-question");
-  questionEl.textContent = currentQuestion.question;
+  // compares 
+  function answerValidator() {
+    var input = event.target.textContent;
+    const key = input.split("");
 
-  // clear out any old question options
-  optionsEl.innerHTML = "";
+    contentEl.innerHTML = "";
+    // if the user answers correctly, 1 point pushed into points
+    if (key[0] == quesCount.answer) {
+      var correct = document.createElement("p");
+      correct.setAttribute("class", "col-lg-8 text-center");
+      correct.innerHTML = "CORRECT!";
+      document.getElementById("content").appendChild(correct);
+      points.push(1);
+    }
 
-  // loop over options
-  currentQuestion.options.forEach(function(choice, i) {
-    // create new button for each choice
-    var choiceNode = document.createElement("button");
-    choiceNode.setAttribute("class", "choice");
-    choiceNode.setAttribute("value", choice);
+    // if not 
+    else {
+      var incorrect = document.createElement("p");
+      incorrect.setAttribute("class", "col-lg-8 text-center");
+      incorrect.innerHTML = "Incorrect";
+      document.getElementById("content").appendChild(incorrect);
+      isIncorrect = true;
+      decreaseT(isIncorrect);
+      // countDown(isTrue)
+    }
 
-    choiceNode.textContent = i + 1 + ". " + choice;
-
-    // attach click event listener to each choice
-    choiceNode.onclick = questionClick;
-
-     // display on the page
-     optionsEl.appendChild(choiceNode);
-    });
+    // anext button
+    var next = document.createElement("button");
+    next.setAttribute("class", "btn btn-primary mb-3 col-lg-8 text-center");
+    next.innerHTML = "next question";
+    document.getElementById("content").appendChild(next);
+    next.setAttribute("id", "next");
+    var nextEl = document.getElementById("next");
+    nextQuestion(nextEl);
   }
-  
-  function questionClick() {
-    // if wrong
-    if (this.value !== questions[currentQ].answer) {
-      // penalize time
-      time -= 15;
-  
-      if (time < 0) {
-        time = 0;
-      }
-  
-      // display new time on page
-      timerEl.textContent = time;
+};
 
-       // if right/wrong
-  feedbackEl.setAttribute("class", "feedback");
-  setTimeout(function() {
-    feedbackEl.setAttribute("class", "feedback hide");
+// Next Question Function
+var nextQuestion = function (nextEl) {
+  // When "next" is clicked
+  nextEl.addEventListener("click", bleh);
+  function bleh() {
+    // If there are still questions to be answered, push # into array and run displayQuestions
+    if (quesNum.length < 5) {
+      quesNum.push(1);
+      displayQuestions();
+    }
+    // Else, call endgame function
+    else {
+      gameOver();
+    }
+  }
+};
+
+function decreaseT(isIncorrect) {
+  console.log(isIncorrect);
+  if (isIncorrect) {
+    timeLeft = timeLeft - 2;
+    console.log(timeLeft);
+    timerEl.textContent = "Time remaining is: " + timeLeft;
+  }
+  isIncorrect = true;
+}
+
+// Start the timer
+function countDown() {
+  
+  var timeInterval = setInterval(function () {
+    if (timeLeft > 1 && stopClock < 1) {
+   
+      timerEl.textContent = "Time remaining: " + timeLeft;
+      timeLeft--;
+    } else {
+      timerEl.textContent = "";
+      clearInterval(timeInterval);
+      gameOver();
+    }
   }, 1000);
-
-  // move to next question
-  currentQ++;
-
-  // check if out of questions
-  if (currentQ === questions.length) {
-    quizEnd();
-  } else {
-    getQuestion();
-  }
-}
-  }
-function quizEnd() {
-  // stop timer
-  clearInterval(timerId);
-
-  // show end screen
-  var endScreenEl = document.getElementById("end-screen");
-  endScreenEl.removeAttribute("class");
-
-  // show final score
-  var finalScoreEl = document.getElementById("final-score");
-  finalScoreEl.textContent = time;
-
-  // hide questions section
-  questionsEl.setAttribute("class", "hide");
 }
 
-function clockTick() {
-  // update time
-  time--;
-  timerEl.textContent = time;
+//  Game Over, man!
+var gameOver = function () {
+  // Stop timer
+  stopClock.push(1);
+  timerEl.textContent = "";
+  // Clear the page
+  contentEl.innerHTML = "";
 
-  // check if user ran out of time
-  if (time <= 0) {
-    quizEnd();
-  }
-}
+  var newQue = document.createElement("h1");
+  newQue.setAttribute("class", "text-center", "col-lg-12");
+  newQue.innerHTML = "Game Over";
+  // append to div
+  document.getElementById("content").appendChild(newQue);
 
-function saveHighscore() {
-  // get value of input box
-  var initials = initialsEl.value.trim();
+  // User's Score
+  var points = points.length * 2;
+  var overAll = document.createElement("p");
+  overAll.innerHTML = "Your score: " + points;
+  overAll.setAttribute("class", "text-center col-lg-12");
+  document.getElementById("content").appendChild(overAll);
 
-  // checkvalue wasn't empty
-  if (initials !== "") {
-    // get saved scores from localstorage, or if not any, set to empty array
-    var highscores =
-      JSON.parse(window.localStorage.getItem("highscores")) || [];
+  // Create a form to store initials
+  var formDirections = document.createElement("p");
+  formDirections.innerHTML = "Enter your initials below!";
+  formDirections.setAttribute("class", "text-center col-lg-12");
+  document.getElementById("content").appendChild(formDirections);
 
-    // format new score 
-    var newScore = {
-      score: time,
-      initials: initials
-    };
+  var userInitials = document.createElement("form");
+  userInitials.setAttribute("id", "user-input");
+  document.getElementById("content").appendChild(userInitials);
 
-    // save localstorage
-    highscores.push(newScore);
-    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+  var input = document.createElement("input");
+  input.setAttribute("class", "col-lg-12");
+  input.setAttribute("type", "text");
+  input.setAttribute("placeholder", "Ex: CD");
+  input.setAttribute("id", "user-initials");
+  document.getElementById("user-input").appendChild(input);
 
-    // redirect to next page
-    window.location.href = "highscores.html";
-  }
-}
+  var inputInitialsAll = document.createElement("button");
+  inputInitialsAll.setAttribute(
+    "class",
+    "btn btn-primary mt-3 col-lg-12 text-center"
+  );
+  inputInitialsAll.innerHTML = "Submit";
+  inputInitialsAll.setAttribute("id", "submit-Initials");
+  document.getElementById("user-input").appendChild(inputInitialsAll);
 
-function checkForEnter(event) {
-  if (event.key === "Enter") {
-    saveHighscore();
-  }
-}
+  // Send to through an input validator
+  var inputInitial = document.getElementById("submit-Initials");
+  var pullScore = document.getElementById("user-initials");
+  areTheyThere(inputInitial, pullScore);
+};
 
-// user clicks to submit initials
-submitBtn.onclick = saveHighscore;
+// Initial validator
+var areTheyThere = function (inputInitial, pullScore) {
+  inputInitial.addEventListener("click", check);
+  function check(event) {
+    event.preventDefault();
 
-// restart
-startBtn.onclick = startQuiz;
-
-initialsEl.onkeyup = checkForEnter;
-
-
-  //highscores
-  function showScores() {
+    initials = pullScore.value.trim();
+    // Check field
+    if (initials) {
+      pullScore.value = "";
+      // If yes - validate length
+      if (initials.length <= 2) {
+        console.log("good length");
+        // local storage function
+        saveYoScore(initials);
+      }
     
-    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
-   highscores.sort(function(a, b) {
-      return b.score - a.score;
-    });
-  
-    highscores.forEach(function(score) {
-      // create li tag high score
-      var liTag = document.createElement("li");
-      liTag.textContent = score.initials + " - " + score.score;
-  
-      // display on page
-      var whichEl = document.getElementById("highscores");
-      whichEl.appendChild(liTag);
-    });
+      else {
+        alert(
+          "Must Put in 2 Initials"
+        );
+      }
+    }
+    // Else
+    else {
+      alert("Please enter your initials");
+    }
   }
+};
+
+// Save scores to local storage
+function saveYoScore(initials) {
+  //Save the user's highscore in an array
+  var points = points.length * 2;
+  var scoreInfo = [];
+  scoreInfo.push(points);
+  scoreInfo.push(initials);
+
+  // Save search to local storage
+  // read the string, localStorage.getItem('setUsernamesArray'),
+  var oldHeroes = window.localStorage.getItem("Score Board");
+  // then convert it to an array with JSON.parse,
+  var oldTales = JSON.parse(oldHeroes);
+  console.log(oldTales);
+  if (oldTales === null) {
+    // create a new array
+    var oldTales = [];
+    // then push to the array,
+    oldTales.push(scoreInfo);
+  } else {
+    // then push to the array,
+    oldTales.push(scoreInfo);
+  }
+  // and then store it again with localStorage.setItem('setUsernamesArray', JSON.stringify(array))
+  window.localStorage.setItem("Score Board", JSON.stringify(oldTales));
+
   
-  function clearHighscores() {
-    window.localStorage.removeItem("highscores");
+  highScore(initials);
+}
+
+// High Scores display
+var highScore = function (initials) {
+  // Clear the page
+  contentEl.innerHTML = "";
+
+  // Display Old Scores
+  var newQue = document.createElement("h1");
+  newQue.setAttribute("class", "text-center", "col-lg-12");
+  newQue.innerHTML = "Score Board";
+  document.getElementById("content").appendChild(newQue);
+
+  // Display Scoreboard Data
+  var oldHeroes = window.localStorage.getItem("Score Board");
+  var scoreData = JSON.parse(oldHeroes);
+
+  if (oldHeroes) {
+    for (let i = 0; i < scoreData.length; i++) {
+      var scoreListing = scoreData[i];
+      var savedUsername = scoreListing[0];
+      var savedPoints = scoreListing[1];
+      var scoreBoard = document.createElement("p");
+      scoreBoard.innerHTML = savedPoints + " : " + savedUsername;
+      scoreBoard.setAttribute("class", "text-center col-lg-12");
+      document.getElementById("content").appendChild(scoreBoard);
+    }
+
+    
+    var points = points.length * 2;
+    var overAll = document.createElement("p");
+    overAll.innerHTML = "Your score- " + initials + " Score: " + points;
+    overAll.setAttribute("class", "text-center col-lg-12");
+    document.getElementById("content").appendChild(overAll);
+
+    // Play again
+    var again = document.createElement("button");
+    again.setAttribute("class", "btn btn-primary text-center");
+    again.innerHTML = "Play Again";
+    again.setAttribute("id", "play-again");
+    document.getElementById("content").appendChild(again);
+    againEl = document.getElementById("play-again");
+    playAgain(againEl);
+  } else {
+    // Return to Home
+    var again = document.createElement("button");
+    again.setAttribute("class", "col-12 btn btn-primary text-center");
+    again.innerHTML = "Return to Home";
+    again.setAttribute("id", "play-again");
+    document.getElementById("content").appendChild(again);
+    againEl = document.getElementById("play-again");
+    playAgain(againEl);
+  }
+
+  // Clear Scores button
+  scoreEl.innerHTML = "";
+  timerEl.innerHTML = "";
+  var clear = document.createElement("button");
+  clear.setAttribute("class", "btn btn-light text-center");
+  clear.innerHTML = "Clear Highscores";
+  clear.setAttribute("id", "clear-scores");
+  document.getElementById("timer").appendChild(clear);
+
+  var forgetItEl = document.getElementById("clear-scores");
+  forgetIt(forgetItEl);
+};
+
+// new
+function playAgain() {
+  againEl.addEventListener("click", reload);
+  function reload() {
     window.location.reload();
   }
-  
-  document.getElementById("clear").onclick = clearHighscores;
-  
-  // run function when page loads
-  showScores();
-  
+}
+
+//Clear Scores
+var forgetIt = function (forgetItEl) {
+  forgetItEl.addEventListener("click", noScore);
+  function noScore() {
+    localStorage.removeItem("Score Board");
+    window.location.reload();
+  }
+};
+
+// use click to coutdown and display
+beginEl.addEventListener("click", displayQuestions);
+//beginEl.addEventListener("click", displayQuestions);
+//scoreEl.addEventListener("click", highScore);
