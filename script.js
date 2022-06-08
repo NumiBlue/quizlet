@@ -1,6 +1,5 @@
 //global variables
 var currentQ = 0;
-var time = questions.length * 15;
 var timerId;
 
 //DOM elements
@@ -10,9 +9,9 @@ var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
 var questionsEl = document.getElementById("questions");
 var timerEl = document.getElementById("time");
-var choicesEl = document.getElementById("choices");
+var optionsEl = document.getElementById("options");
 //Questions
-const myQuestions= [
+const questions= [
   {
   question: "Rumi was ______.",
  options: ["a Roman Emperor", "a Sufi mystic and poet", "a Taoist monk", "an American beat poet"],
@@ -45,6 +44,8 @@ const myQuestions= [
   answer: "The greening"
 }
 ]
+
+var time = questions.length * 15;
 //For each question, grab question div and each input
 //Take array answers, display in inputs, and display question to 42, store as array (array methods)
 //Stringify and Store answers
@@ -60,16 +61,16 @@ function startQuiz() {
   //unhide
   questionsEl.removeAttribute("class");
 
-  //timer
+  timer
   timerId = setInterval(clockTick, 1000);
   timerEl.textContent = time;
 
-  getQuestion();
+  whichEl();
 }
 
-function getQuestion() {
+function whichEl() {
   // get current question object from array
-  var currentQuestion = questions[currentQ];
+  var currentQuestion = questions[questions];
 
   // update question with current question
   var questionEl = document.getElementById("question-question");
@@ -124,7 +125,7 @@ function getQuestion() {
     getQuestion();
   }
 }
-
+  }
 function quizEnd() {
   // stop timer
   clearInterval(timerId);
@@ -190,7 +191,7 @@ submitBtn.onclick = saveHighscore;
 startBtn.onclick = startQuiz;
 
 initialsEl.onkeyup = checkForEnter;
-  }
+
 
   //highscores
   function showScores() {
